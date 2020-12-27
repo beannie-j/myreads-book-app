@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     myBooks: [],
     showSearchPage: false,
-    query: "",
+    // query: "",
   };
 
   getBooks = () => {
@@ -60,8 +60,11 @@ class App extends Component {
           <Route exact path="/search">
             <Search
               onLoad={() => this.setState({ showSearchPage: true })}
+              books={myBooks}
               showSearchPage={showSearchPage}
-              query={query}
+              // query={query}
+              shelfCategories={shelfCategories}
+              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
             />
           </Route>
         </div>
