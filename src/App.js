@@ -10,21 +10,41 @@ class App extends Component {
     myBooks: [],
   };
 
-  // gets all the books on load
-  componentDidMount() {
+  getBooks = () => {
     BooksAPI.getAll().then((data) => {
       this.setState({ myBooks: data });
     });
+  };
+
+  // gets all the books on load
+  componentDidMount() {
+    this.getBooks();
   }
+
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((data) => {
+      book.shelf = shelf;
+      this.setState((state) => ({
+        myBooks: state.myBooks
+          .filter((b) => b.title !== book.title)
+          .concat([book]),
+      }));
+    });
+  };
 
   render() {
     const { myBooks } = this.state;
+    console.log(myBooks);
 
     return (
       <div className="App">
         <React.StrictMode>
           {/* <p>{JSON.stringify(myBooks)}</p> */}
-          <MyBooks books={myBooks} categories={shelfCategories} />
+          <MyBooks
+            books={myBooks}
+            shelfCategories={shelfCategories}
+            changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+          />
         </React.StrictMode>
       </div>
     );

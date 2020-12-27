@@ -6,10 +6,11 @@ class MyBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
     shelfCategories: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   };
 
   render() {
-    const { books, categories } = this.props;
+    const { books, categories, changeShelf, shelfCategories } = this.props;
 
     return (
       <div className="list-books">
@@ -18,10 +19,12 @@ class MyBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {categories.map((category) => (
+            {shelfCategories.map((category) => (
               <Bookshelf
+                shelfCategories={shelfCategories}
                 category={category}
                 books={books.filter((book) => book.shelf === category)}
+                changeShelf={changeShelf}
               />
             ))}
           </div>

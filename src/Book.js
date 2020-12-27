@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import * as changeCase from "change-case";
 
 class Book extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    book: PropTypes.object.isRequired,
     category: PropTypes.string.isRequired,
+    changeShelf: PropTypes.func.isRequired,
+    shelfCategories: PropTypes.array.isRequired,
   };
+
+  handleShelfChange = (e) => {
+    const book = this.props.book;
+    book.shelf = e.target.value;
+    this.props.changeShelf(book, book.shelf);
+  };
+
   render() {
-    const { book } = this.props;
+    const { book, shelfCategories } = this.props;
     return (
       <div className="book">
         <div className="book-top">
@@ -17,18 +27,21 @@ class Book extends Component {
               width: 128,
               height: 193,
               backgroundImage: `url("${book.imageLinks.thumbnail}")`,
-              // 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")',
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select value={book.shelf}>
+            <select value={book.shelf} onChange={this.handleShelfChange}>
               <option value="move" disabled>
                 Move to...
               </option>
-              <option value="currentlyReading">Currently Reading</option>
+              {shelfCategories.map((cat) => (
+                <option value={cat}>{changeCase.capitalCase(cat)}</option>
+              ))}
+
+              {/* <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
-              <option value="none">None</option>
+              <option value="none">None</option> */}
             </select>
           </div>
         </div>
