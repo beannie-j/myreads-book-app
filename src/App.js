@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import MyBooks from "./MyBooks";
+import Search from "./Search";
 import "./App.css";
 
 const shelfCategories = ["currentlyReading", "wantToRead", "read"];
@@ -8,6 +10,8 @@ const shelfCategories = ["currentlyReading", "wantToRead", "read"];
 class App extends Component {
   state = {
     myBooks: [],
+    showSearchPage: false,
+    query: "",
   };
 
   getBooks = () => {
@@ -32,21 +36,36 @@ class App extends Component {
     });
   };
 
+  changeShowSearchPage = () => {
+    this.setState((state) => ({
+      showSearchPage: !state.showSearchPage,
+    }));
+  };
+
   render() {
-    const { myBooks } = this.state;
-    console.log(myBooks);
+    const { myBooks, showSearchPage, query } = this.state;
 
     return (
-      <div className="App">
-        <React.StrictMode>
+      <Router>
+        <div className="App">
           {/* <p>{JSON.stringify(myBooks)}</p> */}
-          <MyBooks
-            books={myBooks}
-            shelfCategories={shelfCategories}
-            changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
-          />
-        </React.StrictMode>
-      </div>
+          <Route exact path="/">
+            <MyBooks
+              books={myBooks}
+              shelfCategories={shelfCategories}
+              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+            />
+          </Route>
+
+          <Route exact path="/search">
+            <Search
+              onLoad={() => this.setState({ showSearchPage: true })}
+              showSearchPage={showSearchPage}
+              query={query}
+            />
+          </Route>
+        </div>
+      </Router>
     );
   }
 }

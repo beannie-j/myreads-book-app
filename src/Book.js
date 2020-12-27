@@ -34,19 +34,16 @@ class Book extends Component {
               <option value="move" disabled>
                 Move to...
               </option>
-              {shelfCategories.map((cat) => (
-                <option value={cat}>{changeCase.capitalCase(cat)}</option>
+              {shelfCategories.map((category) => (
+                <option value={category}>
+                  {changeCase.capitalCase(category)}
+                </option>
               ))}
-
-              {/* <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option> */}
             </select>
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.author}</div>
+        <div className="book-authors">{book.authors.join(", ")}</div>
       </div>
     );
   }

@@ -10,7 +10,7 @@ class MyBooks extends Component {
   };
 
   render() {
-    const { books, categories, changeShelf, shelfCategories } = this.props;
+    const { books, changeShelf, shelfCategories } = this.props;
 
     return (
       <div className="list-books">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Book from "./Book";
+import * as changeCase from "change-case";
 
 class BookShelf extends Component {
   static propTypes = {
@@ -15,7 +16,7 @@ class BookShelf extends Component {
 
     return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{category}</h2>
+        <h2 className="bookshelf-title">{changeCase.capitalCase(category)}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.map((book) => (
