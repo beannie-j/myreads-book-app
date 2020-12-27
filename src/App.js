@@ -3,6 +3,8 @@ import * as BooksAPI from "./BooksAPI";
 import MyBooks from "./MyBooks";
 import "./App.css";
 
+const shelfCategories = ["currentlyReading", "wantToRead", "read"];
+
 class App extends Component {
   state = {
     myBooks: [],
@@ -21,8 +23,8 @@ class App extends Component {
     return (
       <div className="App">
         <React.StrictMode>
-          <h1>Books App</h1>
-          <MyBooks books={myBooks} />
+          {/* <p>{JSON.stringify(myBooks)}</p> */}
+          <MyBooks books={myBooks} categories={shelfCategories} />
         </React.StrictMode>
       </div>
     );
