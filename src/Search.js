@@ -5,7 +5,6 @@ import Book from "./Book";
 
 class Search extends Component {
   static propTypes = {
-    // query: PropTypes.string.isRequired,
     changeShelf: PropTypes.func.isRequired,
     shelfCategories: PropTypes.array.isRequired,
     books: PropTypes.array.isRequired,
@@ -31,13 +30,11 @@ class Search extends Component {
   };
 
   render() {
-    const { showSearchPage, changeShelf, shelfCategories, books } = this.props;
+    const { changeShelf, shelfCategories } = this.props;
     const { results } = this.state;
 
     return (
       <div className="search-books">
-        <p>{showSearchPage.toString()}</p>
-
         <div className="search-books-bar">
           <button
             className="close-search"

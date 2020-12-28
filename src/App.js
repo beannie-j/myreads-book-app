@@ -43,12 +43,11 @@ class App extends Component {
   };
 
   render() {
-    const { myBooks, showSearchPage, query } = this.state;
+    const { myBooks } = this.state;
 
     return (
       <Router>
         <div className="App">
-          {/* <p>{JSON.stringify(myBooks)}</p> */}
           <Route exact path="/">
             <MyBooks
               books={myBooks}
@@ -59,10 +58,7 @@ class App extends Component {
 
           <Route exact path="/search">
             <Search
-              onLoad={() => this.setState({ showSearchPage: true })}
               books={myBooks}
-              showSearchPage={showSearchPage}
-              // query={query}
               shelfCategories={shelfCategories}
               changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
             />

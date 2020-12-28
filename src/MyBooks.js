@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Bookshelf from "./BookShelf";
+import { Link } from "react-router-dom";
 
 class MyBooks extends Component {
   static propTypes = {
@@ -8,6 +9,8 @@ class MyBooks extends Component {
     shelfCategories: PropTypes.array.isRequired,
     changeShelf: PropTypes.func.isRequired,
   };
+
+  handleAdd = () => {};
 
   render() {
     const { books, changeShelf, shelfCategories } = this.props;
@@ -30,9 +33,9 @@ class MyBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <button onClick={() => this.setState({ showSearchPage: true })}>
-            Add a book
-          </button>
+          <Link to="/search">
+            <button onClick={this.handleAdd}>Add a book</button>
+          </Link>
         </div>
       </div>
     );
