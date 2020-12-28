@@ -10,7 +10,6 @@ const shelfCategories = ["currentlyReading", "wantToRead", "read"];
 class App extends Component {
   state = {
     myBooks: [],
-    showSearchPage: false,
   };
 
   getBooks = () => {
@@ -33,12 +32,6 @@ class App extends Component {
           .concat([book]),
       }));
     });
-  };
-
-  changeShowSearchPage = () => {
-    this.setState((state) => ({
-      showSearchPage: !state.showSearchPage,
-    }));
   };
 
   render() {

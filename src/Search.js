@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import * as BooksAPI from "./BooksAPI";
 import Book from "./Book";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
+const searchIcon = <FontAwesomeIcon icon={faSearch} />;
+const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} />;
 
 class Search extends Component {
   static propTypes = {
@@ -42,13 +47,14 @@ class Search extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
+          {arrowLeft}
           <Link className="close-search" to="/">
             Close
           </Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"
-              placeholder="Search by title or author"
+              placeholder="Search"
               onChange={this.searchBook}
             />
           </div>

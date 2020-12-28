@@ -27,6 +27,8 @@ class Book extends Component {
 
     const bookTitle = book.title ? book.title : "No title available";
 
+    const bookShelf = book.shelf ? book.shelf : "none";
+
     return (
       <div className="book">
         <div className="book-top">
@@ -39,7 +41,7 @@ class Book extends Component {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select value={book.shelf} onChange={this.handleShelfChange}>
+            <select value={bookShelf} onChange={this.handleShelfChange}>
               <option value="move" disabled>
                 Move to...
               </option>
@@ -48,6 +50,7 @@ class Book extends Component {
                   {changeCase.capitalCase(category)}
                 </option>
               ))}
+              <option value="none">None</option>
             </select>
           </div>
         </div>
@@ -55,6 +58,7 @@ class Book extends Component {
         <div className="book-authors">
           {book.authors && book.authors.join(", ")}
         </div>
+        <p>{book.shelf}</p>
       </div>
     );
   }
