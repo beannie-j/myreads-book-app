@@ -58,7 +58,7 @@ class Book extends Component {
         </div>
         <div className="book-title">{bookTitle}</div>
         <div className="book-authors">{bookAuthors}</div>
-        <p>{book.shelf}</p>
+        <p>{shelf}</p>
       </div>
     );
   }

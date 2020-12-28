@@ -46,12 +46,16 @@ class Search extends Component {
     const { changeShelf, shelfCategories, books } = this.props;
     const { results, searchNoResults } = this.state;
 
+    if (books.length > 0) console.log(books);
+
     const getBookShelf = (book) => {
-      if (books.length <= 0) return;
-      for (const b in books) {
-        console.log("b.id", b.id, "book.id", book.id, b.shelf);
-        if (b.id === book.id) {
-          return b.shelf;
+      if (books.length > 0) {
+        for (const b in books) {
+          console.log("b.id", b.id, "book.id", book.id);
+          if (b.id === book.id) {
+            console.log("b.shelf", b.shelf);
+            return b.shelf;
+          }
         }
       }
     };
@@ -75,6 +79,7 @@ class Search extends Component {
           {results.length > 0 && <p>Search returned {results.length} books.</p>}
           <ol className="books-grid">
             {results.map((book) => {
+              // console.log(book.title);
               let bookShelf = getBookShelf(book);
               console.log("shelf", bookShelf);
               return (
