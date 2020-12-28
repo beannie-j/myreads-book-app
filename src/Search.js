@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as BooksAPI from "./BooksAPI";
 import Book from "./Book";
+import { Link } from "react-router-dom";
 
 class Search extends Component {
   static propTypes = {
@@ -13,6 +14,7 @@ class Search extends Component {
   state = {
     query: "",
     results: [],
+    searchNoResults: false,
   };
 
   searchBook = (e) => {
@@ -23,9 +25,13 @@ class Search extends Component {
       input = input.trim();
       BooksAPI.search(input).then((data) => {
         data.length > 0
-          ? this.setState({ results: data })
-          : this.setState({ results: [] });
+          ? this.setState({ results: data, searchNoResults: false })
+          : this.setState({ results: [], searchNoResults: true });
       });
+    }
+
+    if (!input) {
+      this.setState({ results: [], searchNoResults: false });
     }
   };
 
@@ -36,21 +42,10 @@ class Search extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <button
-            className="close-search"
-            onClick={() => this.setState({ showSearchPage: false })}
-          >
+          <Link className="close-search" to="/">
             Close
-          </button>
+          </Link>
           <div className="search-books-input-wrapper">
-            {/*
-          NOTES: The search from BooksAPI is limited to a particular set of search terms.
-          You can find these search terms here:
-          https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-          However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-          you don't find a specific author or title. Every search is limited by search terms.
-        */}
             <input
               type="text"
               placeholder="Search by title or author"
@@ -59,6 +54,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
+          {results.length > 0 && <p>Search returned {results.length} books.</p>}
           <ol className="books-grid">
             {results.map((book) => (
               <li key={book.id}>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as changeCase from "change-case";
+import noImage from "./image/NoImage.jpg";
 
 class Book extends Component {
   static propTypes = {
@@ -18,6 +19,14 @@ class Book extends Component {
 
   render() {
     const { book, shelfCategories } = this.props;
+
+    const bookCoverImage =
+      book.imageLinks && book.imageLinks.thumbnail
+        ? book.imageLinks.thumbnail
+        : noImage;
+
+    const bookTitle = book.title ? book.title : "No title available";
+
     return (
       <div className="book">
         <div className="book-top">
@@ -26,7 +35,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.imageLinks.thumbnail}")`,
+              backgroundImage: `url("${bookCoverImage}")`,
             }}
           ></div>
           <div className="book-shelf-changer">
@@ -42,8 +51,10 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.join(", ")}</div>
+        <div className="book-title">{bookTitle}</div>
+        <div className="book-authors">
+          {book.authors && book.authors.join(", ")}
+        </div>
       </div>
     );
   }

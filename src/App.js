@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import MyBooks from "./MyBooks";
 import Search from "./Search";
@@ -11,7 +11,6 @@ class App extends Component {
   state = {
     myBooks: [],
     showSearchPage: false,
-    // query: "",
   };
 
   getBooks = () => {

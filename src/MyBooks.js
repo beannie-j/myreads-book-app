@@ -33,9 +33,7 @@ class MyBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <Link to="/search">
-            <button onClick={this.handleAdd}>Add a book</button>
-          </Link>
+          <Link to="/search" />
         </div>
       </div>
     );
