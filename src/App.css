@@ -208,3 +208,8 @@ button:active {
   text-align: center;
   font-size: 0.8em;
 }
+
+.sorry-dog-image {
+  width: 100%;
+  height: auto;
+}

@@ -4,6 +4,7 @@ import * as BooksAPI from "./BooksAPI";
 import MyBooks from "./MyBooks";
 import Search from "./Search";
 import "./App.css";
+import NotFound from "./NotFound";
 
 const shelfCategories = ["currentlyReading", "wantToRead", "read"];
 
@@ -55,6 +56,8 @@ class App extends Component {
               changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
             />
           </Route>
+
+          {/* <Route component={NotFound} /> */}
         </div>
       </Router>
     );

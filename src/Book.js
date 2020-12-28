@@ -18,7 +18,7 @@ class Book extends Component {
   };
 
   render() {
-    const { book, shelfCategories } = this.props;
+    const { book, shelfCategories, shelf } = this.props;
 
     const bookCoverImage =
       book.imageLinks && book.imageLinks.thumbnail
@@ -26,7 +26,7 @@ class Book extends Component {
         : noImage;
 
     const bookTitle = book.title ? book.title : "No title available";
-    const bookShelf = book.shelf ? book.shelf : "none";
+    const bookShelf = shelf ? shelf : "none";
     const bookAuthors = book.authors
       ? book.authors.join(", ")
       : "no identified author";

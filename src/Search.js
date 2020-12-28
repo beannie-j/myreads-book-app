@@ -26,6 +26,12 @@ class Search extends Component {
     let input = e.target.value;
     this.setState({ query: input });
 
+    console.log("input", input);
+
+    if (!input || input === "") {
+      this.setState({ results: [], searchNoResults: false });
+    }
+
     if (input) {
       input = input.trim();
       BooksAPI.search(input).then((data) => {
@@ -34,15 +40,21 @@ class Search extends Component {
           : this.setState({ results: [], searchNoResults: true });
       });
     }
-
-    if (!input) {
-      this.setState({ results: [], searchNoResults: false });
-    }
   };
 
   render() {
-    const { changeShelf, shelfCategories } = this.props;
-    const { results } = this.state;
+    const { changeShelf, shelfCategories, books } = this.props;
+    const { results, searchNoResults } = this.state;
+
+    const getBookShelf = (book) => {
+      if (books.length <= 0) return;
+      for (const b in books) {
+        console.log("b.id", b.id, "book.id", book.id, b.shelf);
+        if (b.id === book.id) {
+          return b.shelf;
+        }
+      }
+    };
 
     return (
       <div className="search-books">
@@ -62,16 +74,24 @@ class Search extends Component {
         <div className="search-books-results">
           {results.length > 0 && <p>Search returned {results.length} books.</p>}
           <ol className="books-grid">
-            {results.map((book) => (
-              <li key={book.id}>
-                <Book
-                  book={book}
-                  shelfCategories={shelfCategories}
-                  changeShelf={changeShelf}
-                />
-              </li>
-            ))}
+            {results.map((book) => {
+              let bookShelf = getBookShelf(book);
+              console.log("shelf", bookShelf);
+              return (
+                <li key={book.id}>
+                  <Book
+                    book={book}
+                    shelf={bookShelf}
+                    shelfCategories={shelfCategories}
+                    changeShelf={changeShelf}
+                  />
+                </li>
+              );
+            })}
           </ol>
+          {searchNoResults && (
+            <h1>Search did not return any books. Please try again!</h1>
+          )}
         </div>
       </div>
     );
