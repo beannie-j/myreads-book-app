@@ -46,19 +46,18 @@ class Search extends Component {
     const { changeShelf, shelfCategories, books } = this.props;
     const { results, searchNoResults } = this.state;
 
-    if (books.length > 0) console.log(books);
-
     const getBookShelf = (book) => {
-      if (books.length > 0) {
-        for (const b in books) {
-          console.log("b.id", b.id, "book.id", book.id);
-          if (b.id === book.id) {
-            console.log("b.shelf", b.shelf);
-            return b.shelf;
-          }
-        }
-      }
+      return books?.find((item) => item.id === book.id)?.shelf ?? "none";
     };
+
+    // const getBookShelf = (book) => {
+    //   for (let item in books) {
+    //     console.log("item", item);
+    //     if (item.id === book.id) {
+    //       return item.shelf;
+    //     }
+    //   }
+    // };
 
     return (
       <div className="search-books">
@@ -79,9 +78,7 @@ class Search extends Component {
           {results.length > 0 && <p>Search returned {results.length} books.</p>}
           <ol className="books-grid">
             {results.map((book) => {
-              // console.log(book.title);
               let bookShelf = getBookShelf(book);
-              console.log("shelf", bookShelf);
               return (
                 <li key={book.id}>
                   <Book

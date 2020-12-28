@@ -26,6 +26,7 @@ class BookShelf extends Component {
                   category={category}
                   book={book}
                   changeShelf={changeShelf}
+                  shelf={book.shelf}
                 />
               </li>
             ))}

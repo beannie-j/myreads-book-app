@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import MyBooks from "./MyBooks";
 import Search from "./Search";
@@ -40,25 +40,26 @@ class App extends Component {
 
     return (
       <Router>
-        <div className="App">
-          <Route exact path="/">
-            <MyBooks
-              books={myBooks}
-              shelfCategories={shelfCategories}
-              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
-            />
-          </Route>
+        <Switch>
+          <div className="App">
+            <Route exact path="/">
+              <MyBooks
+                books={myBooks}
+                shelfCategories={shelfCategories}
+                changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+              />
+            </Route>
 
-          <Route exact path="/search">
-            <Search
-              books={myBooks}
-              shelfCategories={shelfCategories}
-              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
-            />
-          </Route>
-
-          {/* <Route component={NotFound} /> */}
-        </div>
+            <Route exact path="/search">
+              <Search
+                books={myBooks}
+                shelfCategories={shelfCategories}
+                changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+              />
+            </Route>
+            <Route component={NotFound} />
+          </div>
+        </Switch>
       </Router>
     );
   }
