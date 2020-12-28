@@ -26,8 +26,10 @@ class Book extends Component {
         : noImage;
 
     const bookTitle = book.title ? book.title : "No title available";
-
     const bookShelf = book.shelf ? book.shelf : "none";
+    const bookAuthors = book.authors
+      ? book.authors.join(", ")
+      : "no identified author";
 
     return (
       <div className="book">
@@ -55,9 +57,7 @@ class Book extends Component {
           </div>
         </div>
         <div className="book-title">{bookTitle}</div>
-        <div className="book-authors">
-          {book.authors && book.authors.join(", ")}
-        </div>
+        <div className="book-authors">{bookAuthors}</div>
         <p>{book.shelf}</p>
       </div>
     );
