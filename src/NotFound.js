@@ -7,7 +7,7 @@ class NotFound extends Component {
   render() {
     return (
       <div>
-        <h1>Sorry! something went wrong on our end</h1>
+        <h1>Sorry, we can’t find the page you were looking for.</h1>
         <img
           className="sorry-dog-image"
           src={notFoundDog}

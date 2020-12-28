@@ -39,28 +39,25 @@ class App extends Component {
     const { myBooks } = this.state;
 
     return (
-      <Router>
+      <div className="App">
         <Switch>
-          <div className="App">
-            <Route exact path="/">
-              <MyBooks
-                books={myBooks}
-                shelfCategories={shelfCategories}
-                changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
-              />
-            </Route>
-
-            <Route exact path="/search">
-              <Search
-                books={myBooks}
-                shelfCategories={shelfCategories}
-                changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
-              />
-            </Route>
-            <Route component={NotFound} />
-          </div>
+          <Route exact path="/">
+            <MyBooks
+              books={myBooks}
+              shelfCategories={shelfCategories}
+              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+            />
+          </Route>
+          <Route exact path="/search">
+            <Search
+              books={myBooks}
+              shelfCategories={shelfCategories}
+              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+            />
+          </Route>
+          <Route component={NotFound} />
         </Switch>
-      </Router>
+      </div>
     );
   }
 }

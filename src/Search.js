@@ -26,8 +26,6 @@ class Search extends Component {
     let input = e.target.value;
     this.setState({ query: input });
 
-    console.log("input", input);
-
     if (!input || input === "") {
       this.setState({ results: [], searchNoResults: false });
     }
@@ -44,7 +42,7 @@ class Search extends Component {
 
   render() {
     const { changeShelf, shelfCategories, books } = this.props;
-    const { results, searchNoResults } = this.state;
+    const { results, searchNoResults, query } = this.state;
 
     const getBookShelf = (book) => {
       return books?.find((item) => item.id === book.id)?.shelf ?? "none";
@@ -75,21 +73,22 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {results.length > 0 && <p>Search returned {results.length} books.</p>}
+          {query && <p>Search returned {results.length} books.</p>}
           <ol className="books-grid">
-            {results.map((book) => {
-              let bookShelf = getBookShelf(book);
-              return (
-                <li key={book.id}>
-                  <Book
-                    book={book}
-                    shelf={bookShelf}
-                    shelfCategories={shelfCategories}
-                    changeShelf={changeShelf}
-                  />
-                </li>
-              );
-            })}
+            {query &&
+              results.map((book) => {
+                let bookShelf = getBookShelf(book);
+                return (
+                  <li key={book.id}>
+                    <Book
+                      book={book}
+                      shelf={bookShelf}
+                      shelfCategories={shelfCategories}
+                      changeShelf={changeShelf}
+                    />
+                  </li>
+                );
+              })}
           </ol>
           {searchNoResults && (
             <h1>Search did not return any books. Please try again!</h1>
