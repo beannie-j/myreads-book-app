@@ -89,12 +89,6 @@ body,
   color: #fff;
 }
 
-/* .search-books-input-wrapper {
-  flex: 1;
-  background: #e9e;
-  color: #fff;
-} */
-
 .search-books-bar input {
   width: 100%;
   padding: 15px 10px;
@@ -116,7 +110,7 @@ body,
   left: 15px;
   width: 50px;
   height: 53px;
-  /* background-image: url("./icons/arrow-back.svg"); */
+  background-image: url("./icons/arrow-back.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 28px;

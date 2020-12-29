@@ -50,7 +50,7 @@ class Search extends Component {
 
     // const getBookShelf = (book) => {
     //   for (let item in books) {
-    //     console.log("item", item);
+    //     console.log("item", books[item].shelf);
     //     if (item.id === book.id) {
     //       return item.shelf;
     //     }
@@ -60,7 +60,6 @@ class Search extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          {arrowLeft}
           <Link className="close-search" to="/">
             Close
           </Link>
