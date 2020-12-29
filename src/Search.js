@@ -3,11 +3,6 @@ import PropTypes from "prop-types";
 import * as BooksAPI from "./BooksAPI";
 import Book from "./Book";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
-const searchIcon = <FontAwesomeIcon icon={faSearch} />;
-const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} />;
 
 class Search extends Component {
   static propTypes = {
@@ -47,15 +42,6 @@ class Search extends Component {
     const getBookShelf = (book) => {
       return books?.find((item) => item.id === book.id)?.shelf ?? "none";
     };
-
-    // const getBookShelf = (book) => {
-    //   for (let item in books) {
-    //     console.log("item", books[item].shelf);
-    //     if (item.id === book.id) {
-    //       return item.shelf;
-    //     }
-    //   }
-    // };
 
     return (
       <div className="search-books">

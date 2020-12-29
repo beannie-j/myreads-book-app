@@ -6,7 +6,6 @@ import noImage from "./image/NoImage.jpg";
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
-    category: PropTypes.string.isRequired,
     changeShelf: PropTypes.func.isRequired,
     shelfCategories: PropTypes.array.isRequired,
   };
@@ -25,11 +24,9 @@ class Book extends Component {
         ? book.imageLinks.thumbnail
         : noImage;
 
-    const bookTitle = book.title ? book.title : "No title available";
+    const bookTitle = book.title || "No title available";
     const bookShelf = shelf ? shelf : "none";
-    const bookAuthors = book.authors
-      ? book.authors.join(", ")
-      : "no identified author";
+    const bookAuthors = book?.authors?.join(", ") ?? "no identified author";
 
     return (
       <div className="book">

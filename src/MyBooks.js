@@ -10,8 +10,6 @@ class MyBooks extends Component {
     changeShelf: PropTypes.func.isRequired,
   };
 
-  handleAdd = () => {};
-
   render() {
     const { books, changeShelf, shelfCategories } = this.props;
 

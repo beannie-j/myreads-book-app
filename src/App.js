@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import MyBooks from "./MyBooks";
 import Search from "./Search";
@@ -13,10 +13,9 @@ class App extends Component {
     myBooks: [],
   };
 
-  getBooks = () => {
-    BooksAPI.getAll().then((data) => {
-      this.setState({ myBooks: data });
-    });
+  getBooks = async () => {
+    const myBooks = await BooksAPI.getAll();
+    this.setState({ myBooks });
   };
 
   // gets all the books on load
@@ -52,7 +51,7 @@ class App extends Component {
             <Search
               books={myBooks}
               shelfCategories={shelfCategories}
-              changeShelf={(book, shelf) => this.changeShelf(book, shelf)}
+              changeShelf={this.changeShelf}
             />
           </Route>
           <Route component={NotFound} />
