@@ -8,17 +8,19 @@ const BookShelf = ({ category, books, changeShelf, shelfCategories }) => (
     <h2 className="bookshelf-title">{changeCase.capitalCase(category)}</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
-        {books.map((book) => (
-          <li key={book.id}>
-            <Book
-              shelfCategories={shelfCategories}
-              category={category}
-              book={book}
-              changeShelf={changeShelf}
-              shelf={book.shelf}
-            />
-          </li>
-        ))}
+        {books.map((book) => {
+          return (
+            <li key={book.id}>
+              <Book
+                shelfCategories={shelfCategories}
+                category={category}
+                book={book}
+                changeShelf={changeShelf}
+                shelf={book.shelf}
+              />
+            </li>
+          );
+        })}
       </ol>
     </div>
   </div>

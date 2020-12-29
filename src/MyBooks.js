@@ -20,8 +20,9 @@ class MyBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {shelfCategories.map((category) => (
+            {shelfCategories.map((category, index) => (
               <Bookshelf
+                key={index}
                 shelfCategories={shelfCategories}
                 category={category}
                 books={books.filter((book) => book.shelf === category)}

@@ -25,11 +25,14 @@ class App extends Component {
 
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then((data) => {
-      book.shelf = shelf;
+      const updatedBook = {
+        ...book,
+        shelf,
+      };
       this.setState((state) => ({
         myBooks: state.myBooks
-          .filter((b) => b.title !== book.title)
-          .concat([book]),
+          .filter((b) => b.id !== book.id)
+          .concat(updatedBook),
       }));
     });
   };

@@ -44,8 +44,8 @@ class Book extends Component {
               <option value="move" disabled>
                 Move to...
               </option>
-              {shelfCategories.map((category) => (
-                <option value={category}>
+              {shelfCategories.map((category, index) => (
+                <option value={category} key={index}>
                   {changeCase.capitalCase(category)}
                 </option>
               ))}
