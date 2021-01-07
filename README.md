@@ -6,7 +6,7 @@ Book Reads is a book shelf application which allows users to share their current
 
 ## Demo
 
-TBC
+https://myreads-jeannie.netlify.app/
 
 ## Functionality
 
